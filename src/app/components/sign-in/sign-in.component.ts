@@ -13,26 +13,31 @@ export class SignInComponent {
     password: '',
   };
   response: Object = {};
-  error: Object = {};
+  error: String = "";
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {}
 
   login() {
     try {
-      /*this.authenticationService
+      this.authenticationService
         .authenticate(this.user)
         .subscribe((response) => {
           if (response.status == 200) {
             this.response = { ...response.body };
-            this.router.navigate(["/authenticated"]);
+            window.localStorage.setItem('user', Object(this.response)["name"])
+            window.localStorage.setItem('token', Object(this.response)["token"])
+            this.router.navigate(['/authenticated']);
           } else {
-            this.error = {...response.body}
+            this.error = "Email or Password are incorrect!";
           }
-        });*/
+        },() => {this.error = "Email or Password are incorrect!";});
     } catch (error) {
-      Object(this.error)["message"] = 'Try again later.';
+      this.error = 'Try again later.';
     }
   }
 }

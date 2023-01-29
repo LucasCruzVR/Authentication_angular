@@ -13,7 +13,6 @@ export class AuthenticationService {
   constructor(private http : HttpClient) { }
   
   authenticate(user : any) {
-    console.log("erro")
     return this.http.post<UserLogin>(this.apiUrl, user, {observe: 'response'});
   }
 }
