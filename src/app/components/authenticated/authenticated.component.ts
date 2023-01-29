@@ -1,16 +1,32 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authenticated',
   templateUrl: './authenticated.component.html',
-  styleUrls: ['./authenticated.component.scss']
+  styleUrls: ['./authenticated.component.scss'],
 })
 export class AuthenticatedComponent {
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
+    console.log(localStorage.getItem('token'));
+    if (!this.authenticationService.loggedIn()) {
+      localStorage.removeItem('token');
+      this.router.navigate(['sign-in']);
+    }
+  }
 
-  constructor(private authenticationService: AuthenticationService) {}
+  ngOnInit() {}
 
-  authenticated() : boolean {
+  authenticated(): boolean {
     return this.authenticationService.loggedIn();
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/sign-in']);
   }
 }
