@@ -2,6 +2,24 @@
 	margin: 0;
 }
 
+.error {
+	background-color: white;
+	max-width: 330px;
+	margin: 0 auto;
+	position: relative;
+	padding: 5px;
+	top: 210px;
+	border-radius: 5px;
+	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
+	text-align: center;
+	border-radius: 5px;
+	span {
+		color: red;
+		letter-spacing: 1px;
+		font-family: 'Lato', sans-serif;
+	}
+}
+
 .login-box {
 	background-color: white;
 	max-width: 350px;
