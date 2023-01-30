@@ -12,7 +12,6 @@ export class AuthenticatedComponent {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
-    console.log(localStorage.getItem('token'));
     if (!this.authenticationService.loggedIn()) {
       localStorage.removeItem('token');
       this.router.navigate(['sign-in']);

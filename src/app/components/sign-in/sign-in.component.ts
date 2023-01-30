@@ -19,7 +19,6 @@ export class SignInComponent {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
-    console.log(localStorage.getItem('token'))
     if(this.authenticationService.loggedIn()) {
       this.router.navigate(['authenticated']);
     }
@@ -51,5 +50,9 @@ export class SignInComponent {
     } catch (error) {
       this.error = 'Try again later.';
     }
+  }
+
+  signUp() {
+    this.router.navigate(['sign-up'])
   }
 }

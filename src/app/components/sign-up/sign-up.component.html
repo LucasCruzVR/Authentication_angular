@@ -1,46 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+
 
 <div class="body">
 	<div class="container">
-		<!--<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
-		</div>-->
+		<div class="error" *ngIf="foundError" >
+			<li *ngIf="errors.email"><span>{{errors.email}}</span></li>
+			<li *ngIf="errors.password"><span>{{errors.password}}</span></li>
+			<span *ngIf="serverError">{{serverError}}</span>
+		</div>
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
-				<h2>Log In</h2>
+				<h2>Sign Up</h2>
 			</div>
-			<label for="username">Username</label>
+			<label for="username">Email</label>
 			<br/>
-			<input type="text" id="username">
+			<input type="text" [(ngModel)]="user.email">
 			<br/>
 			<label for="password">Password</label>
 			<br/>
-			<input type="password" id="password">
+			<input type="password" [(ngModel)]="user.password">
 			<br/>
-			<button type="submit">Sign In</button>
+			<div class="buttons">
+				<button class="back" (click)="signIn()">Back</button>
+				<button type="" (click)="save()">Save</button>
+			</div>
 			<br/>
 		</div>
 	</div>
 </div>
 
 <script>
-	$(document).ready(function () {
-    	$('#logo').addClass('animated fadeInDown');
-    	$("input:text:visible:first").focus();
-	});
-	$('#username').focus(function() {
-		$('label[for="username"]').addClass('selected');
-	});
-	$('#username').blur(function() {
-		$('label[for="username"]').removeClass('selected');
-	});
-	$('#password').focus(function() {
-		$('label[for="password"]').addClass('selected');
-	});
-	$('#password').blur(function() {
-		$('label[for="password"]').removeClass('selected');
-	});
-</script>
-
-</html>
+	let tagArr = document.getElementsByTagName("input");
+	for (let i = 0; i < tagArr.length; i++) {
+	  tagArr[i].autocomplete = 'off';
+	}
+  </script>

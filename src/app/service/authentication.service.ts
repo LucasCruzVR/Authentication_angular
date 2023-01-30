@@ -7,20 +7,25 @@ import { UserLogin } from '../interface';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:8080/auth/login';
+  private apiUrl = 'http://localhost:8080/auth';
   private helper = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
 
   authenticate(user: any) {
-    return this.http.post<UserLogin>(this.apiUrl, user, {
+    return this.http.post<UserLogin>(`${this.apiUrl}/login`, user, {
+      observe: 'response',
+    });
+  }
+
+  signUp(user: any) {
+    return this.http.post<UserLogin>(`${this.apiUrl}/sign-up`, user, {
       observe: 'response',
     });
   }
 
   loggedIn() {
     const token = localStorage.getItem("token");
-    console.log(this.helper.isTokenExpired(token))
     return !this.helper.isTokenExpired(token);
   }
 }

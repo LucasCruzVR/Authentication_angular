@@ -92,3 +92,17 @@
 	color: #665851!important;
 	transition: 0.5s;
 }
+
+.buttons {
+	display: flex;
+	justify-content: space-around;
+	padding: 20px 60px 0 60px;
+	.signup {
+		color: white;
+		background-color: #352c28;
+	}
+}
+
+button {
+	width: 100px;
+}
