@@ -36,7 +36,6 @@ export class SignUpComponent {
         },
         (e) => {
           this.errors = e.error;
-          console.log(this.errors);
           this.foundError = true;
         }
       );
